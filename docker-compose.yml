@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  app:
+    container_name: php-apache
+    image: tsania/uas
+    volumes:
+      - ./php/src:/var/www/html/
+    ports:
+      - 8000:80
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: db_karyawan
+      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+    volumes:
+      - db:/var/lib/mysql
+      - ./db_karyawan.sql:/docker-entrypoint-initdb.d/db_karyawan.sql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8080:80'    
+    restart: always
+    environment:
+        PMA_HOST: db
+    depends_on:
+        - db    
