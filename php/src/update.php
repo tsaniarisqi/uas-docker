@@ -36,7 +36,7 @@
 					$id_karyawan=input($_GET["id_karyawan"]);
 
 					$sql="select * from karyawan where id_karyawan=$id_karyawan";
-					$hasil=mysqli_query($con,$sql);
+					$hasil=mysqli_query($connect,$sql);
 					$data = mysqli_fetch_assoc($hasil);
 				}
 
@@ -58,7 +58,7 @@
 							where id_karyawan=$id_karyawan";
 
 					//Mengeksekusi atau menjalankan query diatas
-					$hasil=mysqli_query($con,$sql);
+					$hasil=mysqli_query($connect,$sql);
 
 					//Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
 					if ($hasil) {

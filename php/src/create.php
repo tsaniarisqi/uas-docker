@@ -22,7 +22,7 @@
 		('$nama','$alamat','$email','$no_hp')";
 
         //Mengeksekusi/menjalankan query diatas
-        $hasil=mysqli_query($con,$sql);
+        $hasil=mysqli_query($connect,$sql);
 
         //Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
         if ($hasil) {

@@ -2,12 +2,12 @@
 // Check existence of id parameter before processing further
 if(isset($_GET["id_karyawan"]) && !empty(trim($_GET["id_karyawan"]))){
     // Include config file
-    require_once "koneksi.php";
+    include "koneksi.php";
     
     // Prepare a select statement
     $sql = "SELECT * FROM karyawan WHERE id_karyawan = ?";
     
-    if($stmt = mysqli_prepare($con, $sql)){
+    if($stmt = mysqli_prepare($connect, $sql)){
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "i", $param_id);
         
@@ -27,7 +27,7 @@ if(isset($_GET["id_karyawan"]) && !empty(trim($_GET["id_karyawan"]))){
                 $nama = $row["nama"];
                 $alamat = $row["alamat"];
                 $email = $row["email"];
-		$no_hp = $row["no_hp"];
+		        $no_hp = $row["no_hp"];
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
                 header("location: error.php");
@@ -43,7 +43,7 @@ if(isset($_GET["id_karyawan"]) && !empty(trim($_GET["id_karyawan"]))){
     mysqli_stmt_close($stmt);
     
     // Close connection
-    mysqli_close($con);
+    mysqli_close($connect);
 } else{
     // URL doesn't contain id parameter. Redirect to error page
     header("location: error.php");

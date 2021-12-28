@@ -23,12 +23,12 @@
 			// Process delete operation after confirmation
 			if(isset($_POST["id_karyawan"]) && !empty($_POST["id_karyawan"])){
 			// Include config file
-			require_once "koneksi.php";
+			include "koneksi.php";
 			
 			// Prepare a delete statement
 			$sql = "DELETE FROM karyawan WHERE id_karyawan = ?";
 			
-			if($stmt = mysqli_prepare($con, $sql)){
+			if($stmt = mysqli_prepare($connect, $sql)){
 				// Bind variables to the prepared statement as parameters
 				mysqli_stmt_bind_param($stmt, "i", $param_id);
 				
@@ -49,7 +49,7 @@
 			mysqli_stmt_close($stmt);
 			
 			// Close connection
-			mysqli_close($con);
+			mysqli_close($connect);
 			} else{
 			// Check existence of id parameter
 			if(empty(trim($_GET["id_karyawan"]))){

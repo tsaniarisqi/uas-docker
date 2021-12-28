@@ -35,11 +35,11 @@
                     </div>
                     <?php
                     // Include config file
-                    require_once "koneksi.php";
+                    include "koneksi.php";
 
                     // Attempt select query execution
                     $sql = "SELECT * FROM karyawan";
-                    if($result = mysqli_query($con, $sql)){
+                    if($result = mysqli_query($connect, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
@@ -74,11 +74,11 @@
                             echo "<p class='lead'><em>No records were found.</em></p>";
                         }
                     } else{
-                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
+                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($connect);
                     }
 
                     // Close connection
-                    mysqli_close($con);
+                    mysqli_close($connect);
                     ?>
                 </div>
             </div>
